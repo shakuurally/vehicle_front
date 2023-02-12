@@ -1,11 +1,8 @@
-import { MenuAlt2Icon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { AddVehicle } from "../../../utils/utils";
-import Avatar from "./Avatar";
+import { useEffect } from "react";
+import { AddVehicle, logout } from "../../../utils/utils"; 
 function Header({ sidebarOpen, setSidebarOpen, Collapse, setCollapse }) {
-  const router = useRouter();
-  const [DropdownOpen, setDropdownOpen] = useState(false);
+  const router = useRouter(); 
   useEffect(() => {
     if (
       router.pathname ==
@@ -21,19 +18,24 @@ function Header({ sidebarOpen, setSidebarOpen, Collapse, setCollapse }) {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 -mb-px">
           {/* Header: Left side */}
-          <div className="flex items-center space-x-2"> 
+          <div className="flex items-center space-x-2">
             <button
               className="text-slate-500 lg:hidden hover:text-slate-600 "
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuAlt2Icon className="w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+</svg>
+
             </button>
             {/* desktop menu */}
             <button
               className="hidden text-slate-500 lg:inline-flex hover:text-slate-600 "
               onClick={() => setCollapse(!Collapse)}
             >
-              <MenuAlt2Icon className="w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+</svg>
             </button>
             <p className="text-sm font-medium text-gray-600 capitalize">
               {/* router pathname remove / */}
@@ -57,14 +59,27 @@ function Header({ sidebarOpen, setSidebarOpen, Collapse, setCollapse }) {
             </div>
           </div>
           {/* Header: Right side */}
-          <div className="flex items-center md:space-x-10 text-gray-600">
+          <div className="flex items-center space-x-10 text-gray-600">
             <AddVehicle />
             {/* avatar and user role */}
-            <div
-              className="flex items-center h-24 "
-              onClick={() => setDropdownOpen(!DropdownOpen)}
-            >
-              <Avatar />
+            <div className="flex items-center h-24  cursor-pointer px-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 "
+                onClick={() => {
+                  logout();
+                }}
+              >
+                <path
+                  strokelinecap="round"
+                  strokelinejoin="round"
+                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                />
+              </svg>
             </div>
             {/* user avator */}
           </div>

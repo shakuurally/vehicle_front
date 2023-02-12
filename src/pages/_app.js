@@ -1,4 +1,3 @@
-import { ThemeProvider } from "next-themes";
 import "../styles/globals.css";
 import Layout from "./layout";
 import Router from "next/router";
@@ -23,12 +22,10 @@ function MyApp({ Component, pageProps }) {
   Router.events.on("routeChangeError", () => {
     NProgress.done();
   });
-  return (
-    <ThemeProvider enableSystem={true} attribute="class">
+  return ( 
         <Layout>
           <Component {...pageProps} />
-        </Layout>
-    </ThemeProvider>
+        </Layout> 
   );
 }
 
